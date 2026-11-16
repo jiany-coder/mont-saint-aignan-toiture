@@ -19,8 +19,12 @@
       if(!nom||tel.replace(/\D/g,'').length<9){msg.className='msg ko';msg.textContent='Merci d’indiquer votre nom et un numéro de téléphone valide.';return}
       btn.disabled=true;
       var d=new FormData(form);
-      fetch(form.action,{method:'POST',body:d}).then(function(r){
-        if(!r.ok)throw new Error('http');
+      d.append('_subject','Nouvelle demande de devis - montsaintaignan-toiture.fr');
+      d.append('_captcha','false');d.append('_template','table');d.append('page',location.href);
+      fetch('https://formsubmit.co/ajax/renovationartisan@gmail.com',{method:'POST',body:d,headers:{'Accept':'application/json'}}).then(function(r){
+        if(!r.ok)throw new Error('http');return r.json();
+      }).then(function(j){
+        if(j&&String(j.success)==='false')throw new Error('fs');
         msg.className='msg ok';msg.textContent='Merci ! Votre demande est bien envoyée, nous vous rappelons rapidement.';form.reset();
       }).catch(function(){
         msg.className='msg ko';msg.innerHTML='L’envoi a échoué. Appelez-nous directement au <a href="tel:+33614714329"><b>06 14 71 43 29</b></a>.';
