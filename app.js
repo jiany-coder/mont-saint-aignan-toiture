@@ -23,7 +23,7 @@
         if(!r.ok)throw new Error('http');
         msg.className='msg ok';msg.textContent='Merci ! Votre demande est bien envoyée, nous vous rappelons rapidement.';form.reset();
       }).catch(function(){
-        msg.className='msg ko';msg.innerHTML='L’envoi a échoué. Appelez-nous directement au <a href="tel:+33625672745"><b>06 25 67 27 45</b></a>.';
+        msg.className='msg ko';msg.innerHTML='L’envoi a échoué. Appelez-nous directement au <a href="tel:+33614714329"><b>06 14 71 43 29</b></a>.';
       }).finally(function(){btn.disabled=false});
     });
   });
